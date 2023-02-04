@@ -11,6 +11,7 @@ import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 import edu.wpi.first.shuffleboard.api.widget.SimpleAnnotatedWidget;
 import edu.wpi.first.shuffleboard.plugin.base.data.TimerData;
+import edu.wpi.first.shuffleboard.plugin.base.data.types.TimerType;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -60,7 +61,7 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
             public void run()
             {
                 if (getSource().getData() == null)
-                    return;
+                    getSource().setData(TimerType.Instance.getDefaultValue());
                 text.setText(String.format("%d:%02d (%d)", stopwatch.elapsed(TimeUnit.MINUTES), stopwatch.elapsed(TimeUnit.SECONDS) % 60, ((TimerData)getSource().getData()).getMode()));
                 text.setTextAlignment(TextAlignment.RIGHT);
                 progressBar.setProgress((double)stopwatch.elapsed(TimeUnit.MILLISECONDS) / (((TimerData)getSource().getData()).getTimerDuration() * 1000.0) % 1.0);
