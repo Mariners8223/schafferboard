@@ -13,7 +13,7 @@
  *                                                                             *
  ******************************************************************************/
 .root {
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Unbounded";
     -procedurally-defined-tab-color: derive(-swatch-500, -12%);
     -procedurally-defined-tab-text-color: yellow;
 }
@@ -206,7 +206,7 @@
     -fx-padding: 4px;
     -fx-background-color: -swatch-200;
     -fx-font-weight: bold;
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
 }
 
 .tile .scroll-pane, .tile .viewport,
@@ -590,4 +590,23 @@
 
 .segmented-button .toggle-button.only-button {
     -fx-background-radius: 4 4 4 4;
+}
+
+#progressBar {
+    -fx-max-height: 6;
+    -fx-min-height: 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+#progressBar > .bar {
+    -fx-background-color: #ffffffbf;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+#progressBar > .track {
+    /* -fx-background-color: #ffffff4f; */
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }

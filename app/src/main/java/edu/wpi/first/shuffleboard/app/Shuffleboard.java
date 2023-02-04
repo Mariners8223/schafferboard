@@ -12,6 +12,7 @@ import edu.wpi.first.shuffleboard.app.sources.recording.CsvConverter;
 import edu.wpi.first.shuffleboard.plugin.base.BasePlugin;
 import edu.wpi.first.shuffleboard.plugin.cameraserver.CameraServerPlugin;
 import edu.wpi.first.shuffleboard.plugin.networktables.NetworkTablesPlugin;
+import edu.wpi.first.shuffleboard.api.FontUtil;
 
 import com.google.common.base.Stopwatch;
 
@@ -33,6 +34,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -41,8 +43,9 @@ public class Shuffleboard extends Application {
 
   private static final Logger logger = Logger.getLogger(Shuffleboard.class.getName());
 
-  private Pane mainPane; //NOPMD local variable
-  private Runnable onOtherAppStart = () -> {};
+  private Pane mainPane; // NOPMD local variable
+  private Runnable onOtherAppStart = () -> {
+  };
 
   private final Stopwatch startupTimer = Stopwatch.createStarted();
   private MainWindowController mainWindowController;
@@ -61,8 +64,10 @@ public class Shuffleboard extends Application {
 
     Loggers.setupLoggers();
 
-    // Search for and load themes from the custom theme directory before loading application preferences
-    // This avoids an issue with attempting to load a theme at startup that hasn't yet been registered
+    // Search for and load themes from the custom theme directory before loading
+    // application preferences
+    // This avoids an issue with attempting to load a theme at startup that hasn't
+    // yet been registered
     logger.finer("Registering custom user themes from external dir");
     notifyPreloader(new ShuffleboardPreloader.StateNotification("Loading custom themes", 0));
     Themes.getDefault().loadThemesFromDir();
@@ -72,6 +77,12 @@ public class Shuffleboard extends Application {
     // Before we load components that only work with Java 8, check to make sure
     // the application is running on Java 8. If we are running on an invalid
     // version, show an alert and exit before we get into trouble.
+
+    // We do this to force the FontUtil class to initialize.
+    // This is done here so when everything loads the Unbounded font
+    // will be ready (since JavaFX does not search automatically for
+    // fonts not pre-inclded in JavaFX)
+    FontUtil.getInstance();
 
     Converters.getDefault().register(CsvConverter.Instance);
 
@@ -96,13 +107,16 @@ public class Shuffleboard extends Application {
     logger.log(fxmlLoadTime >= 500 ? Level.WARNING : Level.INFO, "Took " + fxmlLoadTime + "ms to load the main FXML");
 
     notifyPreloader(new ShuffleboardPreloader.StateNotification("Starting up", 1));
-    Thread.sleep(20); // small wait to let the status be visible - the preloader doesn't get notifications for a bit
+    Thread.sleep(20); // small wait to let the status be visible - the preloader doesn't get
+                      // notifications for a bit
   }
 
   @Override
   public void start(Stage primaryStage) {
-    // Set up the application thread to log exceptions instead of using printStackTrace()
-    // Must be called in start() because init() is run on the main thread, not the FX application thread
+    // Set up the application thread to log exceptions instead of using
+    // printStackTrace()
+    // Must be called in start() because init() is run on the main thread, not the
+    // FX application thread
     Thread.currentThread().setUncaughtExceptionHandler(Shuffleboard::uncaughtException);
     onOtherAppStart = () -> Platform.runLater(primaryStage::toFront);
 
@@ -172,8 +186,10 @@ public class Shuffleboard extends Application {
   }
 
   /**
-   * Logs an uncaught exception on a thread. This is in a method instead of directly in a lambda to make the log a bit
-   * cleaner ({@code edu.wpi.first.shuffleboard.app.Shuffleboard uncaughtException} vs
+   * Logs an uncaught exception on a thread. This is in a method instead of
+   * directly in a lambda to make the log a bit
+   * cleaner
+   * ({@code edu.wpi.first.shuffleboard.app.Shuffleboard uncaughtException} vs
    * {@code edu.wpi.first.shuffleboard.app.Shuffleboard start$lambda$2$}).
    *
    * @param thread    the thread on which the exception was thrown
@@ -184,7 +200,8 @@ public class Shuffleboard extends Application {
   }
 
   /**
-   * Gets the time at which the application JAR was built, or the instant this was first called if shuffleboard is not
+   * Gets the time at which the application JAR was built, or the instant this was
+   * first called if shuffleboard is not
    * running from a JAR.
    */
   public static Instant getBuildTime() {
@@ -195,8 +212,10 @@ public class Shuffleboard extends Application {
    * Gets the current shuffleboard version.
    */
   public static String getVersion() {
-    // Try to get the version from the shuffleboard class. This will return null when running from source (eg using
-    // gradle run or similar), so in that case we fall back to getting the version from an API class, which will always
+    // Try to get the version from the shuffleboard class. This will return null
+    // when running from source (eg using
+    // gradle run or similar), so in that case we fall back to getting the version
+    // from an API class, which will always
     // have its version set in that case
     String appVersion = Shuffleboard.class.getPackage().getImplementationVersion();
     if (appVersion != null) {
@@ -206,7 +225,8 @@ public class Shuffleboard extends Application {
   }
 
   /**
-   * Gets the location from which shuffleboard is running. If running from a JAR, this will be the location of the JAR;
+   * Gets the location from which shuffleboard is running. If running from a JAR,
+   * this will be the location of the JAR;
    * otherwise, it will likely be the root build directory of the `app` project.
    */
   public static String getRunningLocation() {

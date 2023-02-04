@@ -14,11 +14,11 @@
     -fx-text-base-color: #fefefe;
     /* Swatch Colors - Blue */
 
-    -swatch-100: hsb(270, 80%, 98%);
-    -swatch-200: hsb(270, 80%, 88%);
-    -swatch-300: hsb(270, 80%, 78%);
-    -swatch-400: hsb(270, 80%, 68%);
-    -swatch-500: hsb(270, 80%, 58%);
+    -swatch-100: hsb(230, 90%, 98%);
+    -swatch-200: hsb(230, 90%, 88%);
+    -swatch-300: hsb(230, 90%, 78%);
+    -swatch-400: hsb(230, 90%, 68%);
+    -swatch-500: hsb(230, 90%, 58%);
 
     -swatch-dark-gray: rgb(16, 16, 24);
     -swatch-gray: derive(-swatch-dark-gray, +10%);
@@ -255,17 +255,21 @@
  *                                                                             *
  ******************************************************************************/
 .tile {
-    -fx-background-color: -swatch-dark-gray;
+    -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-effect: dropshadow(gaussian, #101010, 6, 0.1, 0, 4);
 }
 
 .tile:selected {
-    -fx-background-color: #10102F;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
     -fx-effect: dropshadow(gaussian, -swatch-100, 6, 0.1, 0, 4);
 }
 
 .tile:selected .tile-title-bar {
     -fx-background-color: -swatch-500;
+}
+
+.tile:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.185);
 }
 
 .tile-title-bar {

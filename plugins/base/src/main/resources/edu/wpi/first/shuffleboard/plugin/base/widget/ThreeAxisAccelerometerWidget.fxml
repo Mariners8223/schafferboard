@@ -13,12 +13,13 @@
           fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.ThreeAxisAccelerometerWidget"
           hgap="12" vgap="4"
           minWidth="120" minHeight="80"
+          maxHeight="-Infinity"
           fx:id="root">
     <padding>
         <Insets top="8" right="16" bottom="8" left="8"/>
     </padding>
     <columnConstraints>
-        <ColumnConstraints/>
+        <ColumnConstraints minWidth="15"/>
         <ColumnConstraints hgrow="ALWAYS"/>
     </columnConstraints>
     <rowConstraints>

@@ -1,5 +1,6 @@
 package edu.wpi.first.shuffleboard.api.components;
 
+import edu.wpi.first.shuffleboard.api.FontUtil;
 import edu.wpi.first.shuffleboard.api.css.SimpleColorCssMetaData;
 import edu.wpi.first.shuffleboard.api.css.SimpleCssMetaData;
 
@@ -43,6 +44,8 @@ public class StyleableGauge extends Gauge {
 
   public StyleableGauge(SkinType skinType) {
     super(skinType);
+    if (skinType == SkinType.DASHBOARD)
+        super.setSkin(new DialSkin(this));
   }
 
   @Override
@@ -61,10 +64,12 @@ public class StyleableGauge extends Gauge {
   public void setSkinType(SkinType skinType) {
     SkinType previousSkin = getSkinType();
     if (skinType != previousSkin) {
-      super.setSkinType(skinType);
-      pseudoClassStateChanged(skinTypePseudoClasses.get(previousSkin), false);
-      pseudoClassStateChanged(skinTypePseudoClasses.get(skinType), true);
+        super.setSkinType(skinType);
+        pseudoClassStateChanged(skinTypePseudoClasses.get(previousSkin), false);
+        pseudoClassStateChanged(skinTypePseudoClasses.get(skinType), true);
     }
+    if (skinType == SkinType.DASHBOARD)
+        super.setSkin(new DialSkin(this));
   }
 
   /**

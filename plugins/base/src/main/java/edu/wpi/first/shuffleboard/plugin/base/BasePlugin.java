@@ -36,6 +36,7 @@ import edu.wpi.first.shuffleboard.plugin.base.data.types.SendableChooserType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.SpeedControllerType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.SubsystemType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.ThreeAxisAccelerometerType;
+import edu.wpi.first.shuffleboard.plugin.base.data.types.TimerType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.UltrasonicType;
 import edu.wpi.first.shuffleboard.plugin.base.layout.GridLayout;
 import edu.wpi.first.shuffleboard.plugin.base.layout.GridLayoutSaver;
@@ -65,6 +66,7 @@ import edu.wpi.first.shuffleboard.plugin.base.widget.SpeedControllerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.SplitButtonChooserWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.TextViewWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.ThreeAxisAccelerometerWidget;
+import edu.wpi.first.shuffleboard.plugin.base.widget.TimerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.ToggleButtonWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.ToggleSwitchWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.UltrasonicWidget;
@@ -126,7 +128,8 @@ public class BasePlugin extends Plugin {
         DifferentialDriveType.Instance,
         FmsInfoType.Instance,
         UltrasonicType.Instance,
-        FieldType.Instance
+        FieldType.Instance,
+        TimerType.Instance
     );
   }
 
@@ -161,6 +164,7 @@ public class BasePlugin extends Plugin {
         WidgetType.forAnnotatedWidget(BasicFmsInfoWidget.class),
         WidgetType.forAnnotatedWidget(UltrasonicWidget.class),
         WidgetType.forAnnotatedWidget(FieldWidget.class),
+        WidgetType.forAnnotatedWidget(TimerWidget.class),
         new LayoutClass<>("List Layout", ListLayout.class),
         new LayoutClass<>("Grid Layout", GridLayout.class),
         createSubsystemLayoutType()
@@ -194,6 +198,7 @@ public class BasePlugin extends Plugin {
         .put(BasicSubsystemType.Instance, WidgetType.forAnnotatedWidget(BasicSubsystemWidget.class))
         .put(FieldType.Instance, WidgetType.forAnnotatedWidget(FieldWidget.class))
         .put(SubsystemType.Instance, createSubsystemLayoutType())
+        .put(TimerType.Instance, WidgetType.forAnnotatedWidget(TimerWidget.class))
         .build();
   }
 

@@ -15,7 +15,7 @@
     <center>
         <StackPane>
             <VBox alignment="CENTER_LEFT" maxWidth="-Infinity">
-                <Label text="WPILib Shuffleboard" styleClass="shuffleboard-dialog-header-title"/>
+                <Label text="SchafferBoard" styleClass="shuffleboard-dialog-header-title"/>
                 <Label fx:id="versionLabel" styleClass="shuffleboard-dialog-header-subtitle"/>
             </VBox>
         </StackPane>

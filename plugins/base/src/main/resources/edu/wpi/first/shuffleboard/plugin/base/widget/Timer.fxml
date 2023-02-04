@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import org.controlsfx.glyphfont.Glyph?>
+<?import edu.wpi.first.shuffleboard.api.components.EditableLabel?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.TimerWidget"
+           fx:id="root"
+           prefWidth="128" prefHeight="128" minWidth="32" minHeight="32">
+    <padding>
+        <Insets topRightBottomLeft="8"/>
+    </padding>
+    <VBox alignment="CENTER" spacing="4">
+        <HBox maxWidth="Infinity" alignment="BOTTOM_LEFT" spacing="0">
+            <Label fx:id="titleLabel" textAlignment="LEFT" />
+            <Pane maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="text" textAlignment="RIGHT" />
+        </HBox>
+        <ProgressBar fx:id="progressBar" maxWidth="Infinity" prefHeight="30" progress="0"/>
+    </VBox>
+</StackPane>

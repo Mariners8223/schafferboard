@@ -9,6 +9,8 @@ import javafx.scene.shape.Polygon;
 public class HexagonGrid extends Group {
 
   private static final double ang30 = Math.toRadians(30);
+  private static final double sinAng30 = Math.sin(ang30);
+  private static final double cosAng30 = Math.cos(ang30);
 
   /**
    * Creates a new hexagon grid with the given number of rows and columns.
@@ -19,8 +21,8 @@ public class HexagonGrid extends Group {
    * @param padding the padding between each hexagon
    */
   public HexagonGrid(int cols, int rows, double radius, double padding) {
-    double xOffset = Math.cos(ang30) * (radius + padding);
-    double yOffset = Math.sin(ang30) * (radius + padding) * 3;
+    double xOffset = cosAng30 * (radius + padding);
+    double yOffset = sinAng30 * (radius + padding) * 3;
     for (int row = 0; row < rows; row++) {
       for (int col = 0; col < cols; col++) {
         double x = xOffset * (col * 2 + row % 2);

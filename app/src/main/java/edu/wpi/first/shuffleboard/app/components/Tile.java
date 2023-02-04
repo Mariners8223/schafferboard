@@ -63,8 +63,8 @@ public class Tile<T extends Component> extends BorderPane {
     getStyleClass().addAll("tile", "card");
     PropertyUtils.bindWithConverter(idProperty(), contentProperty(), w -> "tile[" + w + "]");
     EditableLabel editableLabel = (EditableLabel) lookup("#titleLabel");
-    editableLabel.textProperty().bindBidirectional(contentTitle);
-    ((Label) lookup("#titleLabel").lookup(".label")).setTextOverrun(OverrunStyle.LEADING_ELLIPSIS);
+    //editableLabel.textProperty().bindBidirectional(contentTitle);
+    //((Label) lookup("#titleLabel").lookup(".label")).setTextOverrun(OverrunStyle.ELLIPSIS);
     contentView.addListener((__, oldContent, newContent) -> {
       getContentPane()
           .map(Pane::getChildren)
@@ -76,12 +76,12 @@ public class Tile<T extends Component> extends BorderPane {
             }
           });
     });
-    contentTitle.addListener((__, prev, cur) -> editableLabel.setText(cur));
+    //contentTitle.addListener((__, prev, cur) -> editableLabel.setText(cur));
 
-    Glyph titleGlyph = (Glyph) lookup("#titleGlyph");
+    /*Glyph titleGlyph = (Glyph) lookup("#titleGlyph");
     titleGlyph.iconProperty().bind(contentGlyph);
     titleGlyph.visibleProperty().bind(contentShowGlyph);
-    titleGlyph.managedProperty().bind(contentShowGlyph);
+    titleGlyph.managedProperty().bind(contentShowGlyph);*/
   }
 
   private Optional<Pane> getContentPane() {

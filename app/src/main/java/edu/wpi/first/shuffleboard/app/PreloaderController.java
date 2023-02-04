@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 public class PreloaderController {
 
   private static final Color primaryColor = Color.rgb(38, 38, 247); // YInMn blue
-  private static final Color secondaryColor = Color.rgb(64, 64, 255);
+  private static final Color secondaryColor = Color.rgb(69, 69, 252);
 
   private static final double HEXAGON_RADIUS = 10;
 
@@ -41,11 +41,11 @@ public class PreloaderController {
         (int) (root.getPrefWidth() / HEXAGON_RADIUS),
         (int) (root.getPrefHeight() / HEXAGON_RADIUS),
         HEXAGON_RADIUS,
-        0);
+        1);
 
     // Set colors randomly
     hexagonGrid.hexagons().forEach(hexagon -> {
-      hexagon.setFill(primaryColor.interpolate(secondaryColor, Math.random()));
+      hexagon.setFill(primaryColor.interpolate(secondaryColor, Math.sin((hexagon.translateXProperty().getValue()) / 480.0 * Math.PI)));
     });
     backgroundContainer.getChildren().setAll(hexagonGrid);
 

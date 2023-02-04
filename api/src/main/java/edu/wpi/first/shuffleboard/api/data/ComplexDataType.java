@@ -28,6 +28,7 @@ public abstract class ComplexDataType<T extends ComplexData> extends DataType<T>
    */
   public T fromMap(Map<String, Object> map) throws IncompleteDataException {
     try {
+      System.out.println(map);
       return fromMap().apply(map);
     } catch (RuntimeException e) {
       throw new IncompleteDataException("Incomplete data in map: " + map, e);
