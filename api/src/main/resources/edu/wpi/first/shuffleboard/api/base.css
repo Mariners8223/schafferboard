@@ -600,13 +600,24 @@
 }
 
 #progressBar > .bar {
-    -fx-background-color: #ffffffbf;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
 
 #progressBar > .track {
-    /* -fx-background-color: #ffffff4f; */
+    -fx-background-color: #6b6b6b4f;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
+}
+
+.timer {
+    -fx-font-size: 24pt;
+    -fx-font-family: "Unbounded Bold";
+}
+
+.auto-timer > .bar {
+    -fx-background-color: #ff4343;
+}
+.teleop-timer > .bar {
+    -fx-background-color: #ffe555
 }

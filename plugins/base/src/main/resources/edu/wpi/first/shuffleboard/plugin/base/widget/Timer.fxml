@@ -21,7 +21,7 @@
         <HBox maxWidth="Infinity" alignment="BOTTOM_LEFT" spacing="0">
             <Label fx:id="titleLabel" textAlignment="LEFT" />
             <Pane maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-            <Label fx:id="text" textAlignment="RIGHT" />
+            <Label fx:id="text" textAlignment="RIGHT" styleClass="timer" />
         </HBox>
         <ProgressBar fx:id="progressBar" maxWidth="Infinity" prefHeight="30" progress="0"/>
     </VBox>

@@ -44,16 +44,26 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
 
     private Stopwatch stopwatch;
 
+    private double offset;
+
 
     @FXML
     private void initialize()
     {
-        titleLabel.textProperty().bindBidirectional(titleProperty());
+        //titleLabel.textProperty().bindBidirectional(titleProperty());
         text.setTextAlignment(TextAlignment.RIGHT);
         stopwatch = Stopwatch.createStarted();
         autoRunnerExecutor.submit(() -> updateText());
+        dataOrDefault.addListener((__, oldData, newData) -> {
+            if (newData.getMode() != oldData.getMode() || newData.getTimerDuration() != oldData.getTimerDuration()) {
+                stopwatch.reset();
+                stopwatch.start();
+            }
+            offset = ((double)stopwatch.elapsed(TimeUnit.MICROSECONDS) / 1000000.0) - newData.getTimerOffset();
+        });
     }
 
+    @SuppressWarnings("unchecked")
     private void updateText()
     {
         Platform.runLater(new Runnable(){
@@ -62,9 +72,31 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
             {
                 if (getSource().getData() == null)
                     getSource().setData(TimerType.Instance.getDefaultValue());
-                text.setText(String.format("%d:%02d (%d)", stopwatch.elapsed(TimeUnit.MINUTES), stopwatch.elapsed(TimeUnit.SECONDS) % 60, ((TimerData)getSource().getData()).getMode()));
+                
+                double timeLeft = ((TimerData)getSource().getData()).getTimerDuration() - ((double)stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000.0) + offset;
+                if (timeLeft < 0)
+                    timeLeft = 0;
+                if ((int)Math.ceil(timeLeft) >= 60)
+                    text.setText(String.format("%d:%02d", (int)(Math.ceil(timeLeft)) / 60, (int)(Math.ceil(timeLeft)) % 60));
+                else text.setText(String.format("%d", (int)(Math.ceil(timeLeft))));
+                
                 text.setTextAlignment(TextAlignment.RIGHT);
-                progressBar.setProgress((double)stopwatch.elapsed(TimeUnit.MILLISECONDS) / (((TimerData)getSource().getData()).getTimerDuration() * 1000.0) % 1.0);
+
+                switch ((int)((TimerData)getSource().getData()).getMode())
+                {
+                    default:
+                    case 1:
+                        titleLabel.setText("AUTO");
+                        progressBar.getStyleClass().remove("teleop-timer");
+                        progressBar.getStyleClass().add("auto-timer");
+                        break;
+                    case 0:
+                        titleLabel.setText("TELE-OP");
+                        progressBar.getStyleClass().remove("auto-timer");
+                        progressBar.getStyleClass().add("teleop-timer");
+                        break;
+                }
+                progressBar.setProgress(timeLeft / ((TimerData)getSource().getData()).getTimerDuration());
             }
         });
         autoRunnerExecutor.schedule(() -> updateText(), 16, TimeUnit.MILLISECONDS);
