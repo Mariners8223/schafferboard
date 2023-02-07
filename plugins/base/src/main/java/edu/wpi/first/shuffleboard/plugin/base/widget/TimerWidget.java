@@ -83,7 +83,7 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
                     progressBar.getStyleClass().add("teleop-timer");
                 }
                 titleLabel.setText(dataOrDefault.get().getTitle());
-                progressBar.setProgress(dataOrDefault.get().getTimeLeft() / dataOrDefault.get().getDuration());
+                progressBar.setProgress(timeLeft / dataOrDefault.get().getDuration());
             }
         });
         autoRunnerExecutor.schedule(() -> updateText(), 16, TimeUnit.MILLISECONDS);
