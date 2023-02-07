@@ -20,6 +20,6 @@ public final class TimerType extends ComplexDataType<TimerData> {
 
     @Override
     public TimerData getDefaultValue() {
-        return new TimerData(-1, 75);
+        return new TimerData(-1, 75, "NO DATA!");
     }
 }

@@ -1,6 +1,5 @@
 package edu.wpi.first.shuffleboard.plugin.base.widget;
 
-import java.time.LocalTime;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -11,10 +10,7 @@ import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 import edu.wpi.first.shuffleboard.api.widget.SimpleAnnotatedWidget;
 import edu.wpi.first.shuffleboard.plugin.base.data.TimerData;
-import edu.wpi.first.shuffleboard.plugin.base.data.types.TimerType;
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -37,14 +33,10 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
     private ProgressBar progressBar;
     @FXML
     private Label titleLabel;
-    
-    private final BooleanProperty showText = new SimpleBooleanProperty(this, "showText", true);
 
     private final ScheduledExecutorService autoRunnerExecutor = ThreadUtils.newDaemonScheduledExecutorService();
 
     private Stopwatch stopwatch;
-
-    private double offset;
 
 
     @FXML
@@ -55,25 +47,23 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
         stopwatch = Stopwatch.createStarted();
         autoRunnerExecutor.submit(() -> updateText());
         dataOrDefault.addListener((__, oldData, newData) -> {
-            if (newData.getMode() != oldData.getMode() || newData.getTimerDuration() != oldData.getTimerDuration()) {
+            if (newData.getMode() != oldData.getMode() || newData.getDuration() != oldData.getDuration()) {
                 stopwatch.reset();
                 stopwatch.start();
             }
-            offset = ((double)stopwatch.elapsed(TimeUnit.MICROSECONDS) / 1000000.0) - newData.getTimerOffset();
         });
     }
 
-    @SuppressWarnings("unchecked")
     private void updateText()
     {
         Platform.runLater(new Runnable(){
             @Override
             public void run()
             {
-                if (getSource().getData() == null)
-                    getSource().setData(TimerType.Instance.getDefaultValue());
+                //if (getSource().getData() == null)
+                //    getSource().setData(TimerType.Instance.getDefaultValue());
                 
-                double timeLeft = ((TimerData)getSource().getData()).getTimerDuration() - ((double)stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000.0) + offset;
+                double timeLeft = dataOrDefault.get().getTimeLeft();
                 if (timeLeft < 0)
                     timeLeft = 0;
                 if ((int)Math.ceil(timeLeft) >= 60)
@@ -82,21 +72,18 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
                 
                 text.setTextAlignment(TextAlignment.RIGHT);
 
-                switch ((int)((TimerData)getSource().getData()).getMode())
+                if (dataOrDefault.get().getMode() == 1L && !progressBar.getStyleClass().contains("auto-timer"))
                 {
-                    default:
-                    case 1:
-                        titleLabel.setText("AUTO");
-                        progressBar.getStyleClass().remove("teleop-timer");
-                        progressBar.getStyleClass().add("auto-timer");
-                        break;
-                    case 0:
-                        titleLabel.setText("TELE-OP");
-                        progressBar.getStyleClass().remove("auto-timer");
-                        progressBar.getStyleClass().add("teleop-timer");
-                        break;
+                    progressBar.getStyleClass().remove("teleop-timer");
+                    progressBar.getStyleClass().add("auto-timer");
                 }
-                progressBar.setProgress(timeLeft / ((TimerData)getSource().getData()).getTimerDuration());
+                else if (dataOrDefault.get().getMode() != 1L && !progressBar.getStyleClass().contains("teleop-timer"))
+                {
+                    progressBar.getStyleClass().remove("auto-timer");
+                    progressBar.getStyleClass().add("teleop-timer");
+                }
+                titleLabel.setText(dataOrDefault.get().getTitle());
+                progressBar.setProgress(dataOrDefault.get().getTimeLeft() / dataOrDefault.get().getDuration());
             }
         });
         autoRunnerExecutor.schedule(() -> updateText(), 16, TimeUnit.MILLISECONDS);
