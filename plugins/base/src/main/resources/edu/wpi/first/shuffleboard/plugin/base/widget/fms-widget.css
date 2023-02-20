@@ -4,7 +4,6 @@
  *                                                                             *
  ******************************************************************************/
 .fms-widget .match-info-label {
-    -fx-font-weight: bold;
 }
 
 .fms-widget .emergency-stop-pane {
@@ -13,5 +12,4 @@
 
 .fms-widget .emergency-stop-pane .label {
     -fx-text-fill: red !important;
-    -fx-font-weight: bold;
 }

@@ -4,12 +4,13 @@ import javafx.scene.text.Font;
 
 public class FontUtil {
     private static FontUtil instance;
-    public Font unbounded;
+    public Font spaceMono;
+    public Font spaceMonoBold;
     
     private FontUtil()
     {
-        unbounded = Font.loadFont(FontUtil.class.getResourceAsStream("/edu/wpi/first/shuffleboard/api/Unbounded-Regular.ttf"), 10);
-        unbounded = Font.loadFont(FontUtil.class.getResourceAsStream("/edu/wpi/first/shuffleboard/api/Unbounded-Bold.ttf"), 10);
+        spaceMono = Font.loadFont(FontUtil.class.getResourceAsStream("/edu/wpi/first/shuffleboard/api/SpaceMono-Regular.ttf"), 10);
+        spaceMonoBold = Font.loadFont(FontUtil.class.getResourceAsStream("/edu/wpi/first/shuffleboard/api/SpaceMono-Bold.ttf"), 10);
     }
     public static FontUtil getInstance()
     {

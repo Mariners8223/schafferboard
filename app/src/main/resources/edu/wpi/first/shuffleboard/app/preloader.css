@@ -1,6 +1,8 @@
 #root {
     /* YInMn blue */
-    -fx-background-color: rgb(69, 38, 247);
+    -fx-font-family: "Space Mono Bold";
+    -fx-background-color: transparent;/*hsb(210, 90%, 88%)*/
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 0, 0, 1, 1);
 }
 
 #stateLabel {

@@ -5,7 +5,7 @@
 
 <fx:root fx:id="pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="edu.wpi.first.shuffleboard.app.WidgetPaneController"
-            hgap="16" vgap="16"
+            hgap="4" vgap="4"
             type="WidgetPane"
             styleClass="widget-pane">
     <padding>

@@ -50,6 +50,7 @@ import edu.wpi.first.shuffleboard.plugin.base.widget.ComboBoxChooserWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.CommandWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.DifferentialDriveWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.EncoderWidget;
+import edu.wpi.first.shuffleboard.plugin.base.widget.FaultCheckerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.FieldWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.GraphWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.GyroWidget;
@@ -165,6 +166,7 @@ public class BasePlugin extends Plugin {
         WidgetType.forAnnotatedWidget(UltrasonicWidget.class),
         WidgetType.forAnnotatedWidget(FieldWidget.class),
         WidgetType.forAnnotatedWidget(TimerWidget.class),
+        WidgetType.forAnnotatedWidget(FaultCheckerWidget.class),
         new LayoutClass<>("List Layout", ListLayout.class),
         new LayoutClass<>("Grid Layout", GridLayout.class),
         createSubsystemLayoutType()
@@ -174,6 +176,7 @@ public class BasePlugin extends Plugin {
   @Override
   public Map<DataType, ComponentType> getDefaultComponents() {
     return ImmutableMap.<DataType, ComponentType>builder()
+        .put(DataTypes.NumberArray, WidgetType.forAnnotatedWidget(FaultCheckerWidget.class))
         .put(DataTypes.Boolean, WidgetType.forAnnotatedWidget(BooleanBoxWidget.class))
         .put(DataTypes.Number, WidgetType.forAnnotatedWidget(TextViewWidget.class))
         .put(DataTypes.String, WidgetType.forAnnotatedWidget(TextViewWidget.class))

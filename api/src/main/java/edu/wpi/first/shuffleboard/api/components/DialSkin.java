@@ -371,8 +371,8 @@ public class DialSkin extends GaugeSkinBase {
             pane.relocate((gauge.getWidth() - width) * 0.5, (gauge.getHeight() - height) * 0.5);
 
             centerX = width * 0.5;
-            smallFont = new Font(FontUtil.getInstance().unbounded.getName(), 0.12 * height);
-            bigFont = new Font(FontUtil.getInstance().unbounded.getName(), 0.24 * height);
+            smallFont = new Font(FontUtil.getInstance().spaceMono.getName(), 0.12 * height);
+            bigFont = new Font(FontUtil.getInstance().spaceMono.getName(), 0.24 * height);
 
             unitText.setFont(smallFont);
             unitText.relocate((width - unitText.getLayoutBounds().getWidth()) * 0.5, 0.5 * height);
@@ -449,7 +449,7 @@ public class DialSkin extends GaugeSkinBase {
             double thresholdTextRadius = 0.26 * height;
             thresholdText.setFill(gauge.getValueColor());
             thresholdText.setText(String.format(locale, formatString, gauge.getThreshold()));
-            thresholdText.setFont(new Font(FontUtil.getInstance().unbounded.getName(), size * 0.047));
+            thresholdText.setFont(new Font(FontUtil.getInstance().spaceMono.getName(), size * 0.047));
             thresholdText.setRotate(thresholdAngle + 180);
             thresholdText.relocate(
                     centerX - (thresholdText.getLayoutBounds().getWidth() * 0.5)
@@ -490,8 +490,8 @@ public class DialSkin extends GaugeSkinBase {
     }
 
     private void redrawText() {
-        smallFont = new Font(FontUtil.getInstance().unbounded.getName(), 0.12 * height);
-        bigFont = new Font(FontUtil.getInstance().unbounded.getName(), 0.24 * height);
+        smallFont = new Font(FontUtil.getInstance().spaceMono.getName(), 0.12 * height);
+        bigFont = new Font(FontUtil.getInstance().spaceMono.getName(), 0.24 * height);
         locale = gauge.getLocale();
         formatString = new StringBuilder("%.").append(Integer.toString(gauge.getDecimals())).append("f").toString();
         otherFormatString = new StringBuilder("%.").append(Integer.toString(gauge.getTickLabelDecimals())).append("f")
@@ -529,7 +529,7 @@ public class DialSkin extends GaugeSkinBase {
         double thresholdTextRadius = 0.26 * height;
         thresholdText.setFill(gauge.getValueColor());
         thresholdText.setText(String.format(locale, formatString, gauge.getThreshold()));
-        thresholdText.setFont(new Font(FontUtil.getInstance().unbounded.getName(), size * 0.047));
+        thresholdText.setFont(new Font(FontUtil.getInstance().spaceMonoBold.getName(), size * 0.047));
         thresholdText.setRotate(thresholdAngle + 180);
         thresholdText.relocate(
                 centerX - (thresholdText.getLayoutBounds().getWidth() * 0.5)

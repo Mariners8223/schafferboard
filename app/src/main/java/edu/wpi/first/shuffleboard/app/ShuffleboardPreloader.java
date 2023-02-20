@@ -1,11 +1,13 @@
 package edu.wpi.first.shuffleboard.app;
 
+import edu.wpi.first.shuffleboard.api.FontUtil;
 import edu.wpi.first.shuffleboard.api.util.FxUtils;
 
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -20,6 +22,13 @@ public class ShuffleboardPreloader extends Preloader {
 
   @Override
   public void start(Stage stage) throws Exception {
+    
+    // We do this to force the FontUtil class to initialize.
+    // This is done here so when everything loads the Unbounded font
+    // will be ready (since JavaFX does not search automatically for
+    // fonts not pre-inclded in JavaFX)
+    FontUtil.getInstance();
+
     preloaderStage = stage;
 
     Pane preloaderPane = FXMLLoader.load(PreloaderController.class.getResource("Preloader.fxml"));
@@ -27,9 +36,11 @@ public class ShuffleboardPreloader extends Preloader {
 
     Scene scene = new Scene(preloaderPane);
     scene.getStylesheets().setAll("/edu/wpi/first/shuffleboard/api/base.css");
+    
+    scene.setFill(Color.TRANSPARENT);
 
     stage.setScene(scene);
-    stage.initStyle(StageStyle.UNDECORATED);
+    stage.initStyle(StageStyle.TRANSPARENT);
     stage.show();
   }
 

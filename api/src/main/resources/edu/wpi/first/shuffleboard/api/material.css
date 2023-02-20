@@ -33,7 +33,7 @@
  *                                                                             *
  ******************************************************************************/
 .root {
-    -fx-font-family: "";
+    -fx-font-family: "Space Mono Bold";
     /* Swatch Colors - Blue*/
     -swatch-100: #BBDEFB;
     -swatch-200: #90CAF9;
@@ -122,7 +122,6 @@
 
 .toggle-button, .button {
     -fx-text-fill: -fx-text-button-normal;
-    -fx-font-weight: bold;
     -fx-background-insets: 0.0;
     -fx-background-radius: 0.0;
     -fx-alignment: CENTER;
@@ -136,7 +135,6 @@
 }
 
 .button-raised .button .text, .button-flat .button .text {
-    -fx-text-weight: Bold;
 }
 
 .button:default {
@@ -314,7 +312,6 @@
 
 .date-picker-popup > * > .spinner > .label {
     -fx-text-fill: white;
-    -fx-font-weight: bold;
 }
 
 .date-picker-popup > * > .day-name-cell, .date-picker-popup > * > .week-number-cell {

@@ -78,12 +78,6 @@ public class Shuffleboard extends Application {
     // the application is running on Java 8. If we are running on an invalid
     // version, show an alert and exit before we get into trouble.
 
-    // We do this to force the FontUtil class to initialize.
-    // This is done here so when everything loads the Unbounded font
-    // will be ready (since JavaFX does not search automatically for
-    // fonts not pre-inclded in JavaFX)
-    FontUtil.getInstance();
-
     Converters.getDefault().register(CsvConverter.Instance);
 
     notifyPreloader(new ShuffleboardPreloader.StateNotification("Loading base plugin", 0.125));
@@ -214,14 +208,9 @@ public class Shuffleboard extends Application {
   public static String getVersion() {
     // Try to get the version from the shuffleboard class. This will return null
     // when running from source (eg using
-    // gradle run or similar), so in that case we fall back to getting the version
-    // from an API class, which will always
-    // have its version set in that case
-    String appVersion = Shuffleboard.class.getPackage().getImplementationVersion();
-    if (appVersion != null) {
-      return appVersion;
-    }
-    return Storage.class.getPackage().getImplementationVersion();
+    // gradle run or similar), so in that case we fall back to 2023
+    
+    return "2023";
   }
 
   /**

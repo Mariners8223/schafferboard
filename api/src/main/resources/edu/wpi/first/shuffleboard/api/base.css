@@ -13,7 +13,7 @@
  *                                                                             *
  ******************************************************************************/
 .root {
-    -fx-font-family: "Unbounded";
+    -fx-font-family: "Space Mono Bold";
     -procedurally-defined-tab-color: derive(-swatch-500, -12%);
     -procedurally-defined-tab-text-color: yellow;
 }
@@ -106,7 +106,7 @@
  *                                                                             *
  ******************************************************************************/
 .tab-label {
-    -fx-font-size: 15px;
+    -fx-font-size: 16px;
 }
 
 .tab-header-area {
@@ -175,6 +175,7 @@
  *                                                                             *
  ******************************************************************************/
 .tile {
+    -fx-background-radius: 0;
     -fx-font-size: 11pt;
     -fx-effect: dropshadow(gaussian, #999, 6, 0.1, 0, 4);
 }
@@ -189,9 +190,8 @@
 }
 
 .widget-pane:minimal-tile-titles .tile .tile-title-bar {
-    -fx-padding: -2px;
     -fx-font-weight: none;
-    -fx-font-size: 10pt;
+    -fx-font-size: 16pt;
 }
 
 .widget-pane:no-tile-titles .tile .tile-title-bar,
@@ -203,9 +203,7 @@
 }
 
 .tile-title-bar {
-    -fx-padding: 4px;
     -fx-background-color: -swatch-200;
-    -fx-font-weight: bold;
     -fx-font-size: 10pt;
 }
 
@@ -419,11 +417,10 @@
 
 .shuffleboard-dialog-header-subtitle {
     -fx-text-fill: derive(white, -10%);
-    -fx-alignment: center-right;
+    -fx-alignment: top-right;
 }
 
 .h5 {
-    -fx-font-weight: bold;
 }
 
 /*******************************************************************************
@@ -605,14 +602,14 @@
 }
 
 #progressBar > .track {
-    -fx-background-color: #6b6b6b4f;
+    -fx-background-color: -swatch-light-gray;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 }
 
 .timer {
     -fx-font-size: 24pt;
-    -fx-font-family: "Unbounded Bold";
+    -fx-font-family: "Space Mono Bold";
 }
 
 .auto-timer > .bar {
@@ -620,4 +617,48 @@
 }
 .teleop-timer > .bar {
     -fx-background-color: #ffe555
+}
+
+.engine-check .online {
+    -fx-background-radius: 3;
+    -fx-background-color: white;
+    background-color: white;
+    -fx-font-size: 48pt;
+    font-size: 48pt;
+    -fx-text-fill: #000;
+    -fx-color: #000;
+    color: #000;
+}
+
+.engine-check .warn {
+    -fx-background-radius: 3;
+    -fx-background-color: #f7b027;
+    background-color: #f7b027;
+    -fx-font-size: 48pt;
+    font-size: 48pt;
+    -fx-text-fill: white;
+    -fx-color: #f7b027;
+    color: #f7b027;
+}
+
+.engine-check .fatal {
+    -fx-background-radius: 3;
+    -fx-background-color: #f00;
+    background-color: #f00;
+    -fx-font-size: 48pt;
+    font-size: 48pt;
+    -fx-text-fill: white;
+    -fx-color: white;
+    color: white;
+}
+
+.engine-check .offline {
+    -fx-background-radius: 3;
+    -fx-background-color: gray;
+    background-color: gray;
+    -fx-font-size: 48pt;
+    font-size: 48pt;
+    -fx-text-fill: #fff;
+    -fx-color: #fff;
+    color: #fff;
 }

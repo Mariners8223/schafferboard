@@ -14,13 +14,13 @@
     -fx-text-base-color: #fefefe;
     /* Swatch Colors - Blue */
 
-    -swatch-100: hsb(230, 90%, 98%);
-    -swatch-200: hsb(230, 90%, 88%);
-    -swatch-300: hsb(230, 90%, 78%);
-    -swatch-400: hsb(230, 90%, 68%);
-    -swatch-500: hsb(230, 90%, 58%);
+    -swatch-100: hsb(210, 90%, 88%);
+    -swatch-200: hsb(210, 90%, 80%);
+    -swatch-300: hsb(210, 90%, 72%);
+    -swatch-400: hsb(210, 90%, 64%);
+    -swatch-500: hsb(210, 90%, 58%);
 
-    -swatch-dark-gray: rgb(16, 16, 24);
+    -swatch-dark-gray: hsb(210, 70%, 15%);
     -swatch-gray: derive(-swatch-dark-gray, +10%);
     -swatch-light-gray: derive(-swatch-gray, +33%);
     -fx-background: -swatch-gray;
@@ -116,7 +116,6 @@
 }
 
 .button-raised .button .text, .button-flat .button .text {
-    -fx-text-weight: Bold;
 }
 
 .button:default {
@@ -260,8 +259,8 @@
 }
 
 .tile:selected {
-    -fx-background-color: rgba(0, 0, 0, 0.5);
-    -fx-effect: dropshadow(gaussian, -swatch-100, 6, 0.1, 0, 4);
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-effect: dropshadow(gaussian, -swatch-100, 0, 0, 4, 4);
 }
 
 .tile:selected .tile-title-bar {
@@ -269,7 +268,11 @@
 }
 
 .tile:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.185);
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tile:hover:selected {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
 }
 
 .tile-title-bar {
@@ -419,4 +422,7 @@
 
 .axis {
     -fx-tick-label-fill: white;
+}
+#titleLabel {
+    -fx-text-fill: #bbb;
 }

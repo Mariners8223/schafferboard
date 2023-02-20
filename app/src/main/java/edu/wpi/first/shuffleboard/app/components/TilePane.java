@@ -94,7 +94,7 @@ public class TilePane extends GridPane {
 
   private ColumnConstraints createColumnConstraint() {
     ColumnConstraints constraints = new ColumnConstraints(
-        MIN_TILE_SIZE, getTileSize(), Region.USE_PREF_SIZE, Priority.NEVER, HPos.LEFT, true);
+        MIN_TILE_SIZE, getTileSize(), Region.USE_PREF_SIZE, Priority.ALWAYS, HPos.CENTER, true);
     constraints.minWidthProperty().bind(tileSize);
     constraints.prefWidthProperty().bind(tileSize);
     constraints.maxWidthProperty().bind(tileSize);
@@ -103,7 +103,7 @@ public class TilePane extends GridPane {
 
   private RowConstraints createRowConstraint() {
     RowConstraints constraints = new RowConstraints(
-        MIN_TILE_SIZE, getTileSize(), Region.USE_PREF_SIZE, Priority.NEVER, VPos.CENTER, true);
+        MIN_TILE_SIZE, getTileSize(), Region.USE_PREF_SIZE, Priority.ALWAYS, VPos.CENTER, true);
     constraints.minHeightProperty().bind(tileSize);
     constraints.prefHeightProperty().bind(tileSize);
     constraints.maxHeightProperty().bind(tileSize);

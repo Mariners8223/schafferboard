@@ -62,9 +62,7 @@ public class Tile<T extends Component> extends BorderPane {
 
     getStyleClass().addAll("tile", "card");
     PropertyUtils.bindWithConverter(idProperty(), contentProperty(), w -> "tile[" + w + "]");
-    EditableLabel editableLabel = (EditableLabel) lookup("#titleLabel");
-    //editableLabel.textProperty().bindBidirectional(contentTitle);
-    //((Label) lookup("#titleLabel").lookup(".label")).setTextOverrun(OverrunStyle.ELLIPSIS);
+    
     contentView.addListener((__, oldContent, newContent) -> {
       getContentPane()
           .map(Pane::getChildren)

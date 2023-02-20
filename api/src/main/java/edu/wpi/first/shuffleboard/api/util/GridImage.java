@@ -52,10 +52,10 @@ public final class GridImage {
     WritableImage image = new WritableImage(width, height);
 
     // borders
-    fillRect(image, 0, 0, borderThickness, height, lineColor); // left edge
-    fillRect(image, width - borderThickness, 0, borderThickness, height, lineColor); // right edge
-    fillRect(image, 0, 0, width, borderThickness, lineColor); // top edge
-    fillRect(image, 0, height - borderThickness, width, borderThickness, lineColor); // bottom edge
+    fillRect(image, 8, 8, borderThickness, height, lineColor); // left edge
+    fillRect(image, width - borderThickness + 8, 8, borderThickness, height, lineColor); // right edge
+    fillRect(image, 8, 8, width, borderThickness, lineColor); // top edge
+    fillRect(image, 8, height - borderThickness + 8, width, borderThickness, lineColor); // bottom edge
 
     // primary lines
     if (primaryLineCount > 0 && primaryLineThickness > 0) {
@@ -66,7 +66,7 @@ public final class GridImage {
         primaryLineStops[i] = (i + 1) * width / (primaryLineCount + 1);
       }
       for (int i = 0; i < primaryLineCount; i++) {
-        fillRect(image, primaryLineStops[i], 0, primaryLineThickness, height, lineColor);
+        fillRect(image, primaryLineStops[i] + 8, 8, primaryLineThickness, height, lineColor);
       }
 
       // horizontal
@@ -74,7 +74,7 @@ public final class GridImage {
         primaryLineStops[i] = (i + 1) * height / (primaryLineCount + 1);
       }
       for (int i = 0; i < primaryLineCount; i++) {
-        fillRect(image, 0, primaryLineStops[i], width, primaryLineThickness, lineColor);
+        fillRect(image, 8, primaryLineStops[i] + 8, width, primaryLineThickness, lineColor);
       }
     }
 
@@ -97,9 +97,9 @@ public final class GridImage {
     assert w > 0;
     assert h > 0;
     PixelWriter writer = image.getPixelWriter();
-    for (int i = x; i < x + w && i < width; i++) {
-      for (int j = y; j < y + h && j < height; j++) {
-        writer.setColor(i, j, color);
+    for (int i = x; i < x + w; i++) {
+      for (int j = y; j < y + h; j++) {
+        writer.setColor(i % width, j % height, color);
       }
     }
   }

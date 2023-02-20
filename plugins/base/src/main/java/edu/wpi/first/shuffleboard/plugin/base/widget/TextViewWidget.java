@@ -10,8 +10,11 @@ import edu.wpi.first.shuffleboard.plugin.base.data.types.AnalogInputType;
 import org.fxmisc.easybind.EasyBind;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.TextAlignment;
 
 /**
  * A widget for displaying data as text. This supports text, numbers, and booleans.
@@ -31,9 +34,12 @@ public class TextViewWidget extends SimpleAnnotatedWidget<Object> {
   private TextField textField;
   @FXML
   private NumberField numberField;
+  @FXML
+  private Label titleLabel;
 
   @FXML
   private void initialize() {
+    titleLabel.textProperty().bindBidirectional(titleProperty());
     dataProperty().addListener((__, prev, cur) -> {
       if (cur != null) {
         if (cur instanceof Number) {

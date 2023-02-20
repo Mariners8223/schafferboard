@@ -149,6 +149,9 @@ public class WidgetPane extends TilePane implements ComponentContainer {
     } catch (IOException e) {
       throw new IllegalStateException("Can't load FXML : " + getClass().getSimpleName(), e);
     }
+
+    //setTranslateX(-8);
+    //setTranslateY(-8);
   }
 
   public Property<TileTitleDisplayMode> tileType() {
@@ -202,6 +205,8 @@ public class WidgetPane extends TilePane implements ComponentContainer {
    */
   private void resizeTiles() {
     tiles.forEach(tile -> {
+      tile.setMinWidth(tileSizeToWidth(tile.getSize().getWidth()));
+      tile.setMinHeight(tileSizeToHeight(tile.getSize().getHeight()));
       tile.setMaxWidth(tileSizeToWidth(tile.getSize().getWidth()));
       tile.setMaxHeight(tileSizeToHeight(tile.getSize().getHeight()));
     });
@@ -562,6 +567,8 @@ public class WidgetPane extends TilePane implements ComponentContainer {
     getChildren().add(highlight);
     setSize(highlight, highlight.getSize());
     moveNode(highlight, highlight.getLocation());
+    highlight.setLayoutX(8);
+    highlight.setLayoutY(8);
     highlight.sizeProperty().addListener((__, old, size) -> setSize(highlight, size));
     highlight.locationProperty().addListener((__, old, location) -> moveNode(highlight, location));
     highlight.toFront();

@@ -13,7 +13,7 @@
            xmlns:fx="http://javafx.com/fxml"
            fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.TimerWidget"
            fx:id="root"
-           prefWidth="128" prefHeight="128" minWidth="32" minHeight="32">
+           prefWidth="256" prefHeight="64" minWidth="256" minHeight="64">
     <padding>
         <Insets topRightBottomLeft="8"/>
     </padding>

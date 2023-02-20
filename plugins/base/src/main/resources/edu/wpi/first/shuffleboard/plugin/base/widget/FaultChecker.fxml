@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import org.controlsfx.glyphfont.Glyph?>
+<?import edu.wpi.first.shuffleboard.api.components.EditableLabel?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.FaultCheckerWidget"
+           fx:id="root"
+           prefWidth="300" prefHeight="128" minWidth="384" minHeight="64">
+    <padding>
+        <Insets topRightBottomLeft="8"/>
+    </padding>
+    <VBox fx:id="list" alignment="CENTER" spacing="4">
+        <Label fx:id="titleLabel" textAlignment="LEFT" />
+        <HBox fx:id="engines" spacing="4" VBox.vgrow="ALWAYS" styleClass="engine-check">
+            <StackPane HBox.hgrow="ALWAYS" StackPane.alignment="CENTER" prefWidth="9999" maxHeight="-Infinity" styleClass="online" >
+                <Label fx:id="text" textAlignment="CENTER" text="" />
+            </StackPane>
+            <StackPane HBox.hgrow="ALWAYS" StackPane.alignment="CENTER" prefWidth="9999" maxHeight="-Infinity" styleClass="warn" >
+                <Label fx:id="text2" textAlignment="CENTER" text="!" />
+            </StackPane>
+            <StackPane HBox.hgrow="ALWAYS" StackPane.alignment="CENTER" prefWidth="9999" maxHeight="-Infinity" styleClass="fatal" >
+                <Label fx:id="text3" textAlignment="CENTER" text="x" />
+            </StackPane>
+            <StackPane HBox.hgrow="ALWAYS" StackPane.alignment="CENTER" prefWidth="9999" maxHeight="-Infinity" styleClass="offline" >
+                <Label fx:id="text4" textAlignment="CENTER" text="?" />
+            </StackPane>
+        </HBox>
+    </VBox>
+</StackPane>

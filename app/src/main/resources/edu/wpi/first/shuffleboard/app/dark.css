@@ -94,7 +94,6 @@
 }
 
 .button-raised .button .text, .button-flat .button .text {
-    -fx-text-weight: Bold;
 }
 
 .button:default {

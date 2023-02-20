@@ -4,15 +4,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.TextViewWidget"
-            minWidth="64" minHeight="32"
+            minWidth="64" minHeight="64"
             fx:id="root">
     <center>
-        <StackPane>
-            <TextField fx:id="textField"/>
-            <NumberField fx:id="numberField"/>
-        </StackPane>
+        <VBox alignment="CENTER">
+            <padding>
+                <Insets topRightBottomLeft="8"/>
+            </padding>
+            <Label text="AYOOOOO!" fx:id="titleLabel" textAlignment="LEFT" maxWidth="Infinity" />
+            <StackPane>
+                <TextField fx:id="textField"/>
+                <NumberField fx:id="numberField"/>
+            </StackPane>
+        </VBox>
     </center>
 </BorderPane>
