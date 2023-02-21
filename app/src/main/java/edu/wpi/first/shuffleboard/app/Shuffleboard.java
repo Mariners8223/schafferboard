@@ -101,7 +101,7 @@ public class Shuffleboard extends Application {
     logger.log(fxmlLoadTime >= 500 ? Level.WARNING : Level.INFO, "Took " + fxmlLoadTime + "ms to load the main FXML");
 
     notifyPreloader(new ShuffleboardPreloader.StateNotification("Starting up", 1));
-    Thread.sleep(20); // small wait to let the status be visible - the preloader doesn't get
+    Thread.sleep(500); // small wait to let the status be visible - the preloader doesn't get
                       // notifications for a bit
   }
 

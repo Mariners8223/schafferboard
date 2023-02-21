@@ -31,11 +31,14 @@ public class NumberSliderWidget extends SimpleAnnotatedWidget<Number> {
   private Slider slider;
   @FXML
   private Label text;
+  @FXML
+  private Label titleLabel;
 
   private final BooleanProperty showText = new SimpleBooleanProperty(this, "showText", true);
 
   @FXML
   private void initialize() {
+    titleLabel.textProperty().bindBidirectional(titleProperty());
     // enforce five evenly-spaced ticks at all times
     slider.majorTickUnitProperty().bind(
         slider.maxProperty()

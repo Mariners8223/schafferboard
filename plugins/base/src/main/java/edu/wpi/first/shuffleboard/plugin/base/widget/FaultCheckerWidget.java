@@ -40,7 +40,7 @@ public class FaultCheckerWidget extends SimpleAnnotatedWidget<double[]> {
                 
                 StackPane bg = (StackPane)engines.getChildren().get(i);
                 bg.setVisible(true);
-                bg.getStyleClass().clear();d
+                bg.getStyleClass().clear();
                 bg.getStyleClass().add(statusStrings[status]);
                 Label text = (Label)bg.getChildren().get(0);
                 text.setText(statusTextStrings[status]);

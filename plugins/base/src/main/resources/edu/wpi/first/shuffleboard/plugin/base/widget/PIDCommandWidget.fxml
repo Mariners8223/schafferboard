@@ -7,7 +7,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.PIDCommandWidget"
       fx:id="root"
-      minWidth="128" minHeight="300">
+      minWidth="256" minHeight="256">
     <padding>
         <Insets topRightBottomLeft="4"/>
     </padding>

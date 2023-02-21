@@ -35,6 +35,8 @@ public class NumberBarWidget extends SimpleAnnotatedWidget<Number> {
   private LinearIndicator indicator;
   @FXML
   private Label text;
+  @FXML
+  private Label titleLabel;
 
   private final IntegerProperty numTicks = new SimpleIntegerProperty(this, "numTickMarks", 5);
   private final BooleanProperty showText = new SimpleBooleanProperty(this, "showText", true);
@@ -43,6 +45,7 @@ public class NumberBarWidget extends SimpleAnnotatedWidget<Number> {
 
   @FXML
   private void initialize() {
+    titleLabel.textProperty().bind(titleProperty());
     indicator.valueProperty().bind(dataOrDefault);
     text.textProperty().bind(EasyBind.map(dataOrDefault, n -> String.format("%.2f", n.doubleValue())));
 

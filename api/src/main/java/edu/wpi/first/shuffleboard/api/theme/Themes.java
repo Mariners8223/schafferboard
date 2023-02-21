@@ -28,7 +28,8 @@ public final class Themes extends Registry<Theme> {
 
   public static final Theme MATERIAL_LIGHT = new Theme("Material Light", "/edu/wpi/first/shuffleboard/app/light.css");
   public static final Theme MATERIAL_DARK = new Theme("Material Dark", "/edu/wpi/first/shuffleboard/app/dark.css");
-  public static final Theme MIDNIGHT = new Theme("Midnight", "/edu/wpi/first/shuffleboard/app/midnight.css");
+  public static final Theme UNDERWATER = new Theme("Underwater", "/edu/wpi/first/shuffleboard/app/underwater.css");
+  public static final Theme MIDNIGHT = new Theme("Noir", "/edu/wpi/first/shuffleboard/app/midnight.css");
 
   public static final Theme INITIAL_THEME = MATERIAL_LIGHT;
 
@@ -38,7 +39,7 @@ public final class Themes extends Registry<Theme> {
   public static Themes getDefault() {
     synchronized (Themes.class) {
       if (defaultInstance == null) {
-        defaultInstance = new Themes(MATERIAL_LIGHT, MATERIAL_DARK, MIDNIGHT);
+        defaultInstance = new Themes(MATERIAL_LIGHT, MATERIAL_DARK, UNDERWATER, MIDNIGHT);
       }
     }
     return defaultInstance;

@@ -3,8 +3,13 @@ package edu.wpi.first.shuffleboard.api.components;
 import org.fxmisc.easybind.EasyBind;
 import org.fxmisc.easybind.monadic.MonadicBinding;
 
+import edu.wpi.first.shuffleboard.api.util.ThreadUtils;
+
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.Property;
@@ -13,6 +18,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
@@ -22,6 +28,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -45,6 +52,8 @@ public class ShuffleboardDialog extends Dialog<ButtonType> {
 
   private final StringProperty subheaderText = new SimpleStringProperty(this, "subheaderText", null);
 
+  private final ScheduledExecutorService autoRunnerExecutor = ThreadUtils.newDaemonScheduledExecutorService();
+  
   private final MonadicBinding<Boolean> focus = EasyBind.monadic(dialogPaneProperty())
       .map(Node::getScene)
       .map(Scene::getWindow)
@@ -153,6 +162,8 @@ public class ShuffleboardDialog extends Dialog<ButtonType> {
 
     public Header() {
       setMaxWidth(Region.USE_COMPUTED_SIZE);
+      setSpacing(-13);
+      setMargin(subtitle, new Insets(0, 0, 8,0));
       title.textProperty().addListener(removeIfNullText);
       subtitle.textProperty().addListener(removeIfNullText);
 
@@ -164,7 +175,22 @@ public class ShuffleboardDialog extends Dialog<ButtonType> {
       getStyleClass().addAll("header-panel", "shuffleboard-dialog-header");
     }
 
+    public void initRainbowSubtitle() 
+    {
+      autoRunnerExecutor.submit(() -> updateText());
+    }
+  
+    private void updateText() 
+    {
+      double cycle = LocalTime.now().toNanoOfDay() % 4000000000L / 4000000000.0;
+      subtitle.setTextFill(Color.hsb(cycle * 360.0, 1.0, 1.0));
+      autoRunnerExecutor.schedule(() -> updateText(), 16, TimeUnit.MILLISECONDS);
+    }
   }
 
 
+  public void initRainbowSubtitle() 
+  {
+    ((Header)getDialogPane().headerProperty().get()).initRainbowSubtitle();
+  }
 }

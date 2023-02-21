@@ -8,6 +8,7 @@ import edu.wpi.first.shuffleboard.plugin.base.data.PIDControllerData;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -29,9 +30,12 @@ public class PIDControllerWidget extends SimpleAnnotatedWidget<PIDControllerData
   private NumberField dField;
   @FXML
   private NumberField setpointField;
+  @FXML
+  private Label titleLabel;
 
   @FXML
   private void initialize() {
+    titleLabel.textProperty().bind(titleProperty());
     root.setStyle("-fx-font-size: 10pt;");
     dataProperty().addListener((__, old, newData) -> {
       pField.setNumber(newData.getP());

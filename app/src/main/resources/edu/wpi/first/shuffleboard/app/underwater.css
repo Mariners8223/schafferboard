@@ -14,13 +14,13 @@
     -fx-text-base-color: #fefefe;
     /* Swatch Colors - Blue */
 
-    -swatch-100: hsb(210, 0%, 50%);
-    -swatch-200: hsb(210, 0%, 40%);
-    -swatch-300: hsb(210, 0%, 30%);
-    -swatch-400: hsb(210, 0%, 20%);
-    -swatch-500: hsb(210, 0%, 10%);
+    -swatch-100: hsb(210, 90%, 88%);
+    -swatch-200: hsb(210, 90%, 80%);
+    -swatch-300: hsb(210, 90%, 72%);
+    -swatch-400: hsb(210, 90%, 64%);
+    -swatch-500: hsb(210, 90%, 58%);
 
-    -swatch-dark-gray: hsb(210, 0%, 10%);
+    -swatch-dark-gray: hsb(210, 70%, 15%);
     -swatch-gray: derive(-swatch-dark-gray, +10%);
     -swatch-light-gray: derive(-swatch-gray, +33%);
     -fx-background: -swatch-gray;
