@@ -28,6 +28,7 @@ import edu.wpi.first.shuffleboard.plugin.base.data.types.GyroType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.MecanumDriveType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.PIDCommandType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.PIDControllerType;
+import edu.wpi.first.shuffleboard.plugin.base.data.types.ProfiledPIDControllerType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.PowerDistributionType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.QuadratureEncoderType;
 import edu.wpi.first.shuffleboard.plugin.base.data.types.RelayType;
@@ -59,6 +60,7 @@ import edu.wpi.first.shuffleboard.plugin.base.widget.NumberBarWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.NumberSliderWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.PIDCommandWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.PIDControllerWidget;
+import edu.wpi.first.shuffleboard.plugin.base.widget.ProfiledPIDControllerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.PowerDistributionPanelWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.RelayWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.RobotPreferencesWidget;
@@ -82,7 +84,7 @@ import java.util.prefs.Preferences;
 @Description(
     group = "edu.wpi.first.shuffleboard",
     name = "Base",
-    version = "1.3.4",
+    version = "1.3.6",
     summary = "Defines all the WPILib data types and stock widgets"
 )
 @SuppressWarnings("PMD.CouplingBetweenObjects")
@@ -121,6 +123,7 @@ public class BasePlugin extends Plugin {
         CommandType.Instance,
         PIDCommandType.Instance,
         PIDControllerType.Instance,
+        ProfiledPIDControllerType.Instance,
         AccelerometerType.Instance,
         ThreeAxisAccelerometerType.Instance,
         GyroType.Instance,
@@ -158,6 +161,7 @@ public class BasePlugin extends Plugin {
         WidgetType.forAnnotatedWidget(AccelerometerWidget.class),
         WidgetType.forAnnotatedWidget(ThreeAxisAccelerometerWidget.class),
         WidgetType.forAnnotatedWidget(PIDControllerWidget.class),
+        WidgetType.forAnnotatedWidget(ProfiledPIDControllerWidget.class),
         WidgetType.forAnnotatedWidget(GyroWidget.class),
         WidgetType.forAnnotatedWidget(RelayWidget.class),
         WidgetType.forAnnotatedWidget(DifferentialDriveWidget.class),
@@ -190,6 +194,7 @@ public class BasePlugin extends Plugin {
         .put(CommandType.Instance, WidgetType.forAnnotatedWidget(CommandWidget.class))
         .put(PIDCommandType.Instance, WidgetType.forAnnotatedWidget(PIDCommandWidget.class))
         .put(PIDControllerType.Instance, WidgetType.forAnnotatedWidget(PIDControllerWidget.class))
+        .put(ProfiledPIDControllerType.Instance, WidgetType.forAnnotatedWidget(ProfiledPIDControllerWidget.class))
         .put(AccelerometerType.Instance, WidgetType.forAnnotatedWidget(AccelerometerWidget.class))
         .put(ThreeAxisAccelerometerType.Instance, WidgetType.forAnnotatedWidget(ThreeAxisAccelerometerWidget.class))
         .put(GyroType.Instance, WidgetType.forAnnotatedWidget(GyroWidget.class))
