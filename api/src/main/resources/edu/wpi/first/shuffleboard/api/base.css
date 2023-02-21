@@ -618,6 +618,9 @@
 .teleop-timer > .bar {
     -fx-background-color: #ffe555
 }
+.teleop-timer-30s > .bar {
+    -fx-background-color: #dd2323;
+}
 
 .engine-check .online {
     -fx-background-radius: 3;

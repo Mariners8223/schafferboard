@@ -1,16 +1,22 @@
 package edu.wpi.first.shuffleboard.plugin.base.widget;
 
+import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Stopwatch;
+import com.google.common.collect.ImmutableList;
 
+import edu.wpi.first.shuffleboard.api.prefs.Group;
+import edu.wpi.first.shuffleboard.api.prefs.Setting;
 import edu.wpi.first.shuffleboard.api.util.ThreadUtils;
 import edu.wpi.first.shuffleboard.api.widget.Description;
 import edu.wpi.first.shuffleboard.api.widget.ParametrizedController;
 import edu.wpi.first.shuffleboard.api.widget.SimpleAnnotatedWidget;
 import edu.wpi.first.shuffleboard.plugin.base.data.TimerData;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -34,6 +40,8 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
     @FXML
     private Label titleLabel;
 
+    private BooleanProperty warnBelow30s = new SimpleBooleanProperty(this, "warnBelow30s", true);
+
     private final ScheduledExecutorService autoRunnerExecutor = ThreadUtils.newDaemonScheduledExecutorService();
 
     private Stopwatch stopwatch;
@@ -56,7 +64,8 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
 
     private void updateText()
     {
-        Platform.runLater(new Runnable(){
+        Platform.runLater(new Runnable()
+        {
             @Override
             public void run()
             {
@@ -72,15 +81,22 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
                 
                 text.setTextAlignment(TextAlignment.RIGHT);
 
-                if (dataOrDefault.get().getMode() == 1L && !progressBar.getStyleClass().contains("auto-timer"))
+                switch ((int)dataOrDefault.get().getMode())
                 {
-                    progressBar.getStyleClass().remove("teleop-timer");
-                    progressBar.getStyleClass().add("auto-timer");
-                }
-                else if (dataOrDefault.get().getMode() != 1L && !progressBar.getStyleClass().contains("teleop-timer"))
-                {
-                    progressBar.getStyleClass().remove("auto-timer");
-                    progressBar.getStyleClass().add("teleop-timer");
+                    case 1:
+                        progressBar.getStyleClass().clear();
+                        progressBar.getStyleClass().add("auto-timer");
+                    default:
+                    case 0:
+                        progressBar.getStyleClass().clear();
+                        if (timeLeft <= 30.0 && warnBelow30s.get())
+                        {
+                            progressBar.getStyleClass().add("teleop-timer-30s");
+                        }
+                        else
+                        {
+                            progressBar.getStyleClass().add("teleop-timer");
+                        }
                 }
                 titleLabel.setText(dataOrDefault.get().getTitle());
                 progressBar.setProgress(timeLeft / dataOrDefault.get().getDuration());
@@ -93,4 +109,12 @@ public class TimerWidget extends SimpleAnnotatedWidget<TimerData>  {
     public Pane getView() {
         return root;
     }  
+    @Override
+    public List<Group> getSettings() {
+        return ImmutableList.of(
+            Group.of("Timer Settings",
+                Setting.of("Warn below 30s", warnBelow30s, Boolean.class)
+            )
+        );
+    }
 }
