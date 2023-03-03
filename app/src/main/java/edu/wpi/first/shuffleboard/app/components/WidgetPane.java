@@ -172,7 +172,7 @@ public class WidgetPane extends TilePane implements ComponentContainer {
         gridLineBorderThickness.get(),
         secondaryGridLineCount.get(), secondaryGridLineThickness.get()
     );
-    return gridImage.getAsImage(gridLineColor.getValue());
+    return gridImage.getAsImage(gridLineColor.getValue(), -2);
   }
 
   private static BackgroundImage makeTiledBackgroundImage(Image image) {

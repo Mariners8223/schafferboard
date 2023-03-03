@@ -665,3 +665,20 @@
     -fx-color: #fff;
     color: #fff;
 }
+
+#leftT .on {
+    -fx-background-radius: 32 0 0 32;
+    -fx-background-color: #ffdd23;
+}
+#leftT {
+    -fx-background-radius: 32 0 0 32;
+    -fx-background-color: -swatch-light-gray;
+}
+#rightT .on {
+    -fx-background-radius: 0 32 32 0;
+    -fx-background-color: purple;
+}
+#rightT {
+    -fx-background-radius: 0 32 32 0;
+    -fx-background-color: -swatch-light-gray;
+}

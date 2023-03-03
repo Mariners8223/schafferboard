@@ -67,6 +67,7 @@ import edu.wpi.first.shuffleboard.plugin.base.widget.RobotPreferencesWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.SimpleDialWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.SpeedControllerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.SplitButtonChooserWidget;
+import edu.wpi.first.shuffleboard.plugin.base.widget.SwitchWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.TextViewWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.ThreeAxisAccelerometerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.TimerWidget;
@@ -169,6 +170,7 @@ public class BasePlugin extends Plugin {
         WidgetType.forAnnotatedWidget(BasicFmsInfoWidget.class),
         WidgetType.forAnnotatedWidget(UltrasonicWidget.class),
         WidgetType.forAnnotatedWidget(FieldWidget.class),
+        WidgetType.forAnnotatedWidget(SwitchWidget.class),
         WidgetType.forAnnotatedWidget(TimerWidget.class),
         WidgetType.forAnnotatedWidget(FaultCheckerWidget.class),
         new LayoutClass<>("List Layout", ListLayout.class),

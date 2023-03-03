@@ -25,7 +25,7 @@ import javafx.scene.paint.Color;
 public class PreloaderController {
 
   static Random random = new Random();
-  public static int line = random.nextInt(0, 595);
+  public static int line = random.nextInt(595);
   private static final Color primaryColor = Color.hsb(210, 0.9, 0.88, 0.0); // YInMn blue
   private static final Color secondaryColor = Color.hsb(210, 0.8, 1.0, 0.0);
 

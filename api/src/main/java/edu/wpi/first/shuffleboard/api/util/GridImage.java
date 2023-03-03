@@ -48,14 +48,14 @@ public final class GridImage {
    *
    * @return a new image of the grid
    */
-  public Image getAsImage(Color lineColor) {
+  public Image getAsImage(Color lineColor, int offset) {
     WritableImage image = new WritableImage(width, height);
 
     // borders
-    fillRect(image, 8, 8, borderThickness, height, lineColor); // left edge
-    fillRect(image, width - borderThickness + 8, 8, borderThickness, height, lineColor); // right edge
-    fillRect(image, 8, 8, width, borderThickness, lineColor); // top edge
-    fillRect(image, 8, height - borderThickness + 8, width, borderThickness, lineColor); // bottom edge
+    fillRect(image, offset, offset, borderThickness, height, lineColor); // left edge
+    fillRect(image, width - borderThickness + offset, offset, borderThickness, height, lineColor); // right edge
+    fillRect(image, offset, offset, width, borderThickness, lineColor); // top edge
+    fillRect(image, offset, height - borderThickness + offset, width, borderThickness, lineColor); // bottom edge
 
     // primary lines
     if (primaryLineCount > 0 && primaryLineThickness > 0) {
@@ -66,7 +66,7 @@ public final class GridImage {
         primaryLineStops[i] = (i + 1) * width / (primaryLineCount + 1);
       }
       for (int i = 0; i < primaryLineCount; i++) {
-        fillRect(image, primaryLineStops[i] + 8, 8, primaryLineThickness, height, lineColor);
+        fillRect(image, primaryLineStops[i] + offset, offset, primaryLineThickness, height, lineColor);
       }
 
       // horizontal
@@ -74,7 +74,7 @@ public final class GridImage {
         primaryLineStops[i] = (i + 1) * height / (primaryLineCount + 1);
       }
       for (int i = 0; i < primaryLineCount; i++) {
-        fillRect(image, 8, primaryLineStops[i] + 8, width, primaryLineThickness, lineColor);
+        fillRect(image, offset, primaryLineStops[i] + offset, width, primaryLineThickness, lineColor);
       }
     }
 
@@ -92,14 +92,10 @@ public final class GridImage {
    * @param color the color of the rectangle
    */
   private void fillRect(WritableImage image, int x, int y, int w, int h, Color color) {
-    assert x >= 0 && x <= width;
-    assert y >= 0 && y <= height;
-    assert w > 0;
-    assert h > 0;
     PixelWriter writer = image.getPixelWriter();
     for (int i = x; i < x + w; i++) {
       for (int j = y; j < y + h; j++) {
-        writer.setColor(i % width, j % height, color);
+        writer.setColor(i < 0 ? width + i : i % width, j < 0 ? height + j : j % height, color);
       }
     }
   }

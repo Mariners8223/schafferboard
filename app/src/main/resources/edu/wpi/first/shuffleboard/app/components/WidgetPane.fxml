@@ -9,6 +9,6 @@
             type="WidgetPane"
             styleClass="widget-pane">
     <padding>
-        <Insets topRightBottomLeft="10"/>
+        <Insets topRightBottomLeft="0"/>
     </padding>
 </fx:root>

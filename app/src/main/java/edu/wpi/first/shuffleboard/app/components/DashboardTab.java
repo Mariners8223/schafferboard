@@ -236,9 +236,9 @@ public class DashboardTab extends Tab implements HandledTab, Populatable, Settin
             )
         ),
         Group.of("Layout",
-            Setting.of("Tile size", "The size of tiles in this tab", flushableTileSize, Double.class)
+            Setting.of("Tile size", "The size of tiles in this tab", flushableTileSize, Double.class),
             // removed for now until it's fixed upstream.
-            /*Setting.of(
+            Setting.of(
                 "Horizontal spacing",
                 "How far apart tiles should be, horizontally",
                 widgetPane.hgapProperty(),
@@ -249,7 +249,7 @@ public class DashboardTab extends Tab implements HandledTab, Populatable, Settin
                 "How far apart tiles should be, vertically",
                 widgetPane.vgapProperty(),
                 Double.class
-            )*/
+            )
         ),
         Group.of("Visual",
             Setting.of("Show grid", "Show the alignment grid", widgetPane.showGridProperty(), Boolean.class),

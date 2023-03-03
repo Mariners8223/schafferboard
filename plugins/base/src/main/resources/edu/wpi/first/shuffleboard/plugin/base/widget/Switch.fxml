@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import org.controlsfx.glyphfont.Glyph?>
+<?import edu.wpi.first.shuffleboard.api.components.EditableLabel?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.SwitchWidget"
+           fx:id="root"
+           prefWidth="64" prefHeight="64" minWidth="64" minHeight="64">
+    <padding>
+        <Insets topRightBottomLeft="8"/>
+    </padding>
+    <HBox maxWidth="Infinity" alignment="BOTTOM_LEFT" spacing="4">
+        <StackPane maxWidth="Infinity" HBox.hgrow="ALWAYS" fx:id="leftT">
+            <StackPane maxWidth="Infinity" maxHeight="Infinity" fx:id="left">
+                <Label fx:id="leftLabel" textAlignment="CENTER" text="Cone" />
+            </StackPane>
+        </StackPane>
+        <StackPane maxWidth="Infinity" HBox.hgrow="ALWAYS" fx:id="rightT">
+            <StackPane maxWidth="Infinity" maxHeight="Infinity" fx:id="right">
+                <Label fx:id="rightLabel" textAlignment="CENTER" text="Cube" />
+            </StackPane>
+        </StackPane>
+    </HBox>
+</StackPane>
