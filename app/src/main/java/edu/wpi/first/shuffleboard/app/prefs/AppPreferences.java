@@ -25,7 +25,7 @@ import javafx.beans.property.SimpleObjectProperty;
 public final class AppPreferences {
 
   private final Property<Theme> theme = new SimpleObjectProperty<>(this, "Theme", Themes.INITIAL_THEME);
-  private final DoubleProperty defaultTileSize = new SimpleDoubleProperty(this, "defaultTileSize", 128);
+  private final DoubleProperty defaultTileSize = new SimpleDoubleProperty(this, "defaultTileSize", 64);
   private final BooleanProperty confirmTabClose =
       new SimpleBooleanProperty(this, "confirmTabClose", true);
   private final Property<File> saveFile = new SimpleObjectProperty<>(this, "saveFile", null);

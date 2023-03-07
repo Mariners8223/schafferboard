@@ -11,22 +11,27 @@
 <?import edu.wpi.first.shuffleboard.api.components.EditableLabel?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.SwitchWidget"
+           fx:controller="edu.wpi.first.shuffleboard.plugin.base.widget.LevelSelectWidget"
            fx:id="root"
            prefWidth="64" prefHeight="64" minWidth="64" minHeight="64">
     <padding>
         <Insets topRightBottomLeft="8"/>
     </padding>
-    <HBox maxWidth="Infinity" alignment="BOTTOM_LEFT" spacing="4">
-        <StackPane prefWidth="100000" HBox.hgrow="ALWAYS" fx:id="leftT">
+    <VBox maxWidth="Infinity" alignment="TOP_LEFT" spacing="4">
+        <StackPane prefHeight="100000" VBox.vgrow="ALWAYS">
             <StackPane maxWidth="Infinity" maxHeight="Infinity" fx:id="left">
-                <Label fx:id="leftLabel" textAlignment="CENTER" text="Cone" wrapText="true" />
+                <Label fx:id="leftLabel" textAlignment="CENTER" text="1" wrapText="true" />
             </StackPane>
         </StackPane>
-        <StackPane prefWidth="100000" HBox.hgrow="ALWAYS" fx:id="rightT">
+        <StackPane prefHeight="100000" VBox.vgrow="ALWAYS">
+            <StackPane maxWidth="Infinity" maxHeight="Infinity" fx:id="middle">
+                <Label fx:id="middleLabel" textAlignment="CENTER" text="Cube" wrapText="true" />
+            </StackPane>
+        </StackPane>
+        <StackPane prefHeight="100000" VBox.vgrow="ALWAYS">
             <StackPane maxWidth="Infinity" maxHeight="Infinity" fx:id="right">
                 <Label fx:id="rightLabel" textAlignment="CENTER" text="Cube" wrapText="true" />
             </StackPane>
         </StackPane>
-    </HBox>
+    </VBox>
 </StackPane>

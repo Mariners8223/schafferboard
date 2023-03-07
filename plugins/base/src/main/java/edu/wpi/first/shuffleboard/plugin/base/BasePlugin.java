@@ -55,6 +55,7 @@ import edu.wpi.first.shuffleboard.plugin.base.widget.FaultCheckerWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.FieldWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.GraphWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.GyroWidget;
+import edu.wpi.first.shuffleboard.plugin.base.widget.LevelSelectWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.MecanumDriveWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.NumberBarWidget;
 import edu.wpi.first.shuffleboard.plugin.base.widget.NumberSliderWidget;
@@ -171,6 +172,7 @@ public class BasePlugin extends Plugin {
         WidgetType.forAnnotatedWidget(UltrasonicWidget.class),
         WidgetType.forAnnotatedWidget(FieldWidget.class),
         WidgetType.forAnnotatedWidget(SwitchWidget.class),
+        WidgetType.forAnnotatedWidget(LevelSelectWidget.class),
         WidgetType.forAnnotatedWidget(TimerWidget.class),
         WidgetType.forAnnotatedWidget(FaultCheckerWidget.class),
         new LayoutClass<>("List Layout", ListLayout.class),
